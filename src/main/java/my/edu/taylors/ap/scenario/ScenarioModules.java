@@ -6,7 +6,7 @@ import my.edu.taylors.ap.data.DataAccessException;
 import my.edu.taylors.ap.scenario.common.ScenarioModule;
 import my.edu.taylors.ap.scenario.grooming.GroomingModule;
 import my.edu.taylors.ap.scenario.kopitiam.KopitiamModule;
-//import my.edu.taylors.ap.scenario.mine.MyScenarioModule;
+import my.edu.taylors.ap.scenario.mine.MyScenarioModule;
 import my.edu.taylors.ap.scenario.makerspace.MakerspaceModule;
 import my.edu.taylors.ap.scenario.rooms.RoomsModule;
 import my.edu.taylors.ap.scenario.textbooks.TextbooksModule;
@@ -26,7 +26,7 @@ public final class ScenarioModules {
 
         Path data = scenarioDir.resolve("data");
         return switch (profile.scenario()) {
-            case KOPITIAM -> new KopitiamModule(profile, data, runtimeDir, model, trace, clock);
+            case KOPITIAM -> new MyScenarioModule(profile, data, runtimeDir, model, trace, clock);
             case MAKERSPACE -> new MakerspaceModule(profile, data, runtimeDir, model, trace, clock);
             case ROOMS -> new RoomsModule(profile, data, runtimeDir, model, trace, clock);
             case GROOMING -> new GroomingModule(profile, data, runtimeDir, model, trace, clock);
