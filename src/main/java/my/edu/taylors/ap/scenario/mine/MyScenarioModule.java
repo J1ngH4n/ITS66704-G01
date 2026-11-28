@@ -55,6 +55,7 @@ public class MyScenarioModule implements ScenarioModule {
     private final KopitiamService service;
     private final KopitiamTools kopitiamTools;
     private final OrderCheckTool orderCheckTool;
+    private final ToastThresholdTool toastThresholdTool;
     private final OrderExtractor extractor;
 
     public MyScenarioModule(GroupProfile profile, Path dataDir, Path runtimeDir, ChatModel model,
@@ -87,6 +88,7 @@ public class MyScenarioModule implements ScenarioModule {
                 service,
                 pricingService,
                 rules.freeToastThresholdSen());
+        this.toastThresholdTool = new ToastThresholdTool(service, rules.freeToastThresholdSen());
 
         // TODO [B3] create your structured-output extractor:
         //           AiServices.builder(YourExtractor.class).chatModel(model).build();
@@ -104,6 +106,7 @@ public class MyScenarioModule implements ScenarioModule {
         // TODO [A6] add your own tools object(s) here, e.g. tools.add(myTools);
         tools.add(kopitiamTools);
         tools.add(orderCheckTool);
+        tools.add(toastThresholdTool);
         return tools;
     }
 
