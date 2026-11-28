@@ -107,6 +107,10 @@ public class MyScenarioModule implements ScenarioModule {
         tools.add(kopitiamTools);
         tools.add(orderCheckTool);
         tools.add(toastThresholdTool);
+        tools.add(new OrderModeComparisonTool(service));
+        tools.add(new MenuPriceComparisonTool(service));
+        tools.add(new DrinkBudgetTool(service));
+        tools.add(new MenuAlternativesTool(service));
         return tools;
     }
 

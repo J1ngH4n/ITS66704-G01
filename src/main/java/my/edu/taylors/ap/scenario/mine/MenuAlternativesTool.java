@@ -3,6 +3,7 @@ package my.edu.taylors.ap.scenario.mine;
 
 import dev.langchain4j.agent.tool.P;
 import dev.langchain4j.agent.tool.Tool;
+import my.edu.taylors.ap.scenario.common.Money;
 import my.edu.taylors.ap.scenario.common.RuleViolationException;
 import my.edu.taylors.ap.scenario.kopitiam.KopitiamService;
 import my.edu.taylors.ap.scenario.kopitiam.MenuItem;
@@ -33,8 +34,7 @@ public final class MenuAlternativesTool {
                                 Math.abs((long) item.priceSen() - requested.priceSen()))
                         .thenComparing(MenuItem::code))
                 .limit(3)
-                .map(item -> item.code() + " " + item.name()
-                        + " RM" + String.format("%.2f", item.priceSen() / 100.0))
+                .map(item -> item.code() + " " + item.name() + " " + Money.rm(item.priceSen()))
                 .collect(Collectors.joining("\n"));
 
         return alternatives.isEmpty()
